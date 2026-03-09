@@ -64,43 +64,45 @@
        SCROLL NAV MODULE — self-contained, safe to remove entirely.
        If removed, change <nav> back to:
          class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-silver/30"
-       and remove the #nav-spacer div.
+       and remove the hero top spacer div.
        ============================================================ */
 
-    /* Default state: transparent over hero */
+    /* Default state: white background, large logo */
     #main-nav[data-state="hero"] {
-      background-color: transparent;
-      border-bottom: 1px solid transparent;
+      background-color: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(168, 174, 189, 0.2);
     }
     #main-nav[data-state="hero"] .nav-link {
-      color: rgba(168, 174, 189, 0.9); /* silver */
-    }
-    #main-nav[data-state="hero"] .nav-link:hover {
-      color: #ffffff;
-    }
-    #main-nav[data-state="hero"] #mobile-menu-btn {
-      color: rgba(168, 174, 189, 0.9);
-    }
-
-    /* Scrolled state: white with blur */
-    #main-nav[data-state="scrolled"] {
-      background-color: rgba(255, 255, 255, 0.92);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(168, 174, 189, 0.3);
-      box-shadow: 0 1px 3px rgba(49, 52, 78, 0.06);
-    }
-    #main-nav[data-state="scrolled"] .nav-link {
       color: #586582; /* slate */
     }
-    #main-nav[data-state="scrolled"] .nav-link:hover {
+    #main-nav[data-state="hero"] .nav-link:hover {
       color: #31344e; /* navy */
     }
-    #main-nav[data-state="scrolled"] #mobile-menu-btn {
+    #main-nav[data-state="hero"] #mobile-menu-btn {
       color: #586582;
     }
 
-    /* Logo size transition on scroll */
+    /* Scrolled state: navy/dark with transparency */
+    #main-nav[data-state="scrolled"] {
+      background-color: rgba(49, 52, 78, 0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(168, 174, 189, 0.15);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+    }
+    #main-nav[data-state="scrolled"] .nav-link {
+      color: rgba(168, 174, 189, 0.9); /* silver */
+    }
+    #main-nav[data-state="scrolled"] .nav-link:hover {
+      color: #ffffff;
+    }
+    #main-nav[data-state="scrolled"] #mobile-menu-btn {
+      color: rgba(168, 174, 189, 0.9);
+    }
+
+    /* Logo size transition on scroll — shrinks */
     #main-nav[data-state="scrolled"] #nav-logo {
       height: 2.5rem; /* h-10 */
     }
@@ -118,6 +120,12 @@
       #main-nav[data-state="scrolled"] #nav-inner {
         height: 5rem; /* lg:h-20 */
       }
+    }
+
+    /* CTA button inverts on scrolled state */
+    #main-nav[data-state="scrolled"] .nav-cta {
+      background-color: #a96e38;
+      color: #ffffff;
     }
 
     /* Subtle particle texture for dark sections */
@@ -141,7 +149,7 @@
       <div id="nav-inner" class="flex items-center justify-between transition-all duration-300 ease-in-out h-20 lg:h-28">
         <!-- Logo -->
         <a href="#" class="flex items-center">
-          <img id="nav-logo" src="assets/images/web/logo-text-alpha.png" alt="Inquoro" class="transition-all duration-300 ease-in-out h-14 lg:h-20 w-auto">
+          <img id="nav-logo" src="assets/images/web/logo-text-alpha-cropped-lg.png" alt="Inquoro" class="transition-all duration-300 ease-in-out h-16 lg:h-24 w-auto">
         </a>
 
         <!-- Desktop Nav -->
@@ -725,7 +733,7 @@
       <div class="flex flex-col lg:flex-row justify-between items-start space-y-8 lg:space-y-0">
         <!-- Brand -->
         <div class="lg:w-4/12">
-          <img src="assets/images/web/logo-text-alpha.png" alt="Inquoro" class="h-16 lg:h-20 mb-4 brightness-200">
+          <img src="assets/images/web/logo-text-alpha-cropped-lg.png" alt="Inquoro" class="h-16 lg:h-20 mb-4 brightness-200">
           <p class="text-sm text-silver/60">Generating Discovery</p>
         </div>
 
@@ -782,14 +790,12 @@
       var hero = document.querySelector('section');
       if (!hero) return;
 
-      // Logo sources
-      var logoHero = 'assets/images/web/logo-text-alpha.png';    // works on dark bg
-      var logoScrolled = 'assets/images/web/logo-text-white.png'; // works on white bg
+      // Single alpha logo — works on both white and dark backgrounds
+      // No src swap needed; size change handled by CSS
 
       function setState(state) {
         if (nav.dataset.state === state) return;
         nav.dataset.state = state;
-        logo.src = (state === 'hero') ? logoHero : logoScrolled;
       }
 
       // Use IntersectionObserver if available, fall back to scroll listener
