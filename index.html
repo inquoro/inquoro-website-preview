@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Inquoro — Public Opinion, Precisely Known</title>
+  <meta name="description" content="Verified voices. Precise sampling. A single pipeline from signal to insight.">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: '#31344e',
+            brown: '#64463c',
+            amber: '#a96e38',
+            slate: '#586582',
+            silver: '#a8aebd',
+            'navy-light': '#3d4162',
+            'amber-light': '#c4873f',
+            'amber-dark': '#8a5a2d',
+          },
+          fontFamily: {
+            heading: ['Jost', 'Futura', 'system-ui', 'sans-serif'],
+            body: ['Inter', 'system-ui', 'sans-serif'],
+          },
+        },
+      },
+    }
+  </script>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <style>
+    body { font-family: 'Inter', system-ui, sans-serif; }
+    h1, h2, h3, h4, h5, h6, .font-heading { font-family: 'Jost', 'Futura', system-ui, sans-serif; }
+
+    /* Subtle gradient for dark sections */
+    .bg-navy-gradient {
+      background: linear-gradient(135deg, #31344e 0%, #3d4162 50%, #31344e 100%);
+    }
+
+    /* Beamline connector line */
+    .beamline-connector {
+      position: relative;
+    }
+    .beamline-connector::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(90deg, #a8aebd, #a96e38, #a8aebd);
+      z-index: 0;
+    }
+
+    /* Subtle particle texture for dark sections */
+    .texture-dots {
+      background-image: radial-gradient(circle, rgba(168, 174, 189, 0.08) 1px, transparent 1px);
+      background-size: 24px 24px;
+    }
+  </style>
+
+  <!-- Favicon (placeholder — replace with real favicon) -->
+  <link rel="icon" type="image/png" href="assets/images/web/logo-icon-alpha.png">
+</head>
+
+<body class="bg-white text-navy font-body antialiased">
+
+  <!-- ============================================================ -->
+  <!-- NAVIGATION -->
+  <!-- ============================================================ -->
+  <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-silver/30">
+    <div class="container mx-auto px-5 lg:px-8">
+      <div class="flex items-center justify-between h-16 lg:h-20">
+        <!-- Logo -->
+        <a href="#" class="flex items-center">
+          <img src="assets/images/web/logo-text-alpha.png" alt="Inquoro" class="h-10 lg:h-12 w-auto">
+        </a>
+
+        <!-- Desktop Nav -->
+        <div class="hidden lg:flex items-center space-x-8">
+          <a href="#mission" class="text-sm font-medium text-slate hover:text-navy transition-colors">About</a>
+          <a href="#beamline" class="text-sm font-medium text-slate hover:text-navy transition-colors">Platform</a>
+          <a href="#sources" class="text-sm font-medium text-slate hover:text-navy transition-colors">Sources</a>
+          <a href="#measurement" class="text-sm font-medium text-slate hover:text-navy transition-colors">Services</a>
+          <a href="#difference" class="text-sm font-medium text-slate hover:text-navy transition-colors">Why Inquoro</a>
+          <a href="#contact" class="inline-flex items-center px-5 py-2.5 rounded-full bg-amber text-white text-sm font-medium hover:bg-amber-dark transition-colors">
+            Find the Signal
+          </a>
+        </div>
+
+        <!-- Mobile menu button -->
+        <button id="mobile-menu-btn" class="lg:hidden p-2 text-slate hover:text-navy" aria-label="Open menu">
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Mobile Nav -->
+      <div id="mobile-menu" class="hidden lg:hidden pb-4 space-y-2">
+        <a href="#mission" class="block py-2 text-sm text-slate hover:text-navy">About</a>
+        <a href="#beamline" class="block py-2 text-sm text-slate hover:text-navy">Platform</a>
+        <a href="#sources" class="block py-2 text-sm text-slate hover:text-navy">Sources</a>
+        <a href="#measurement" class="block py-2 text-sm text-slate hover:text-navy">Services</a>
+        <a href="#difference" class="block py-2 text-sm text-slate hover:text-navy">Why Inquoro</a>
+        <a href="#contact" class="block py-2 text-sm font-medium text-amber">Find the Signal</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 1: HERO -->
+  <!-- ============================================================ -->
+  <section class="bg-navy-gradient texture-dots relative overflow-hidden">
+    <div class="container mx-auto px-5 lg:px-8 py-24 lg:py-36 relative z-10">
+      <div class="max-w-4xl mx-auto text-center">
+        <!-- Logo icon as hero element -->
+        <div class="mb-10 flex justify-center">
+          <img src="assets/images/web/logo-icon-alpha-lg.png" alt="" class="h-24 lg:h-32 w-auto opacity-80">
+        </div>
+
+        <h1 class="font-heading text-4xl md:text-5xl lg:text-7xl font-medium text-white tracking-tight leading-[1.1] mb-6">
+          Public opinion,<br>
+          <span class="text-amber">precisely known.</span>
+        </h1>
+
+        <p class="text-lg lg:text-xl text-silver max-w-2xl mx-auto mb-10 leading-relaxed">
+          Verified voices. Precise sampling. A single pipeline from signal to insight — so what you learn is something you can trust, and act on.
+        </p>
+
+        <a href="#contact" class="inline-flex items-center px-8 py-4 rounded-full bg-amber text-white text-lg font-medium hover:bg-amber-dark transition-colors shadow-lg shadow-amber/20">
+          Find the Signal
+          <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
+          </svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 2: THE MISSION — "Tracing the Curve" -->
+  <!-- ============================================================ -->
+  <section id="mission" class="bg-white">
+    <div class="container mx-auto px-5 lg:px-8 py-24 lg:py-32">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="font-heading text-sm font-medium uppercase tracking-[0.2em] text-amber mb-6">Our Mission</h2>
+        <h3 class="font-heading text-3xl md:text-4xl lg:text-5xl font-light text-navy tracking-tight leading-[1.2] mb-12">
+          Tracing the Curve
+        </h3>
+
+        <div class="space-y-6 text-lg text-slate leading-relaxed">
+          <p>
+            Opinion doesn't shift in straight lines. It arcs — forcefully bent by turmoil or gently reshaped by generational drift and the slow erosion of old certainties.
+          </p>
+          <p>
+            Tracing that arc requires observation that is careful enough to detect consensus forming, dissent emerging, or assumptions quietly falling away.
+          </p>
+          <p class="text-navy font-medium">
+            Inquoro exists to do this work: to listen with precision, to measure with rigor, and to turn what is heard into understanding that guides.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 3: THE BEAMLINE -->
+  <!-- ============================================================ -->
+  <section id="beamline" class="bg-gray-50/80">
+    <div class="container mx-auto px-5 lg:px-8 py-24 lg:py-32">
+      <div class="max-w-4xl mx-auto text-center mb-16">
+        <h2 class="font-heading text-sm font-medium uppercase tracking-[0.2em] text-amber mb-6">Our Platform</h2>
+        <h3 class="font-heading text-3xl md:text-4xl lg:text-5xl font-medium text-navy tracking-tight mb-4">
+          The Beamline
+        </h3>
+        <p class="font-heading text-xl text-slate">One Pipeline. Every Project.</p>
+      </div>
+
+      <div class="max-w-3xl mx-auto text-center mb-16">
+        <p class="text-lg text-slate leading-relaxed">
+          Every Inquoro engagement moves through a single integrated pipeline — from sample design through recruitment, fielding, weighting, and analysis. We call it the Beamline.
+        </p>
+        <p class="text-lg text-slate leading-relaxed mt-4">
+          Not assembled piecemeal. Built as one continuous process — so decisions made in sampling carry through to weighting, and insights from analysis shape the next project's design. The result: faster timelines, lower cost, research that holds together end to end.
+        </p>
+        <p class="text-lg text-navy font-medium mt-4">
+          Everything that enters the Beamline comes out sharper.
+        </p>
+      </div>
+
+      <!-- Pipeline Visualization -->
+      <div class="max-w-5xl mx-auto">
+        <div class="relative">
+          <!-- Connector line (desktop only) -->
+          <div class="hidden lg:block absolute top-1/2 left-[10%] right-[10%] h-0.5 bg-gradient-to-r from-silver via-amber to-silver -translate-y-1/2 z-0"></div>
+
+          <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6 lg:gap-4 relative z-10">
+            <!-- Stage 1 -->
+            <div class="flex flex-col items-center text-center">
+              <div class="w-16 h-16 rounded-full bg-white border-2 border-amber flex items-center justify-center mb-3 shadow-sm">
+                <svg class="h-7 w-7 text-amber" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M9.53 16.122a3 3 0 0 0-5.78 1.128 2.25 2.25 0 0 1-2.4 2.245 4.5 4.5 0 0 0 8.4-2.245c0-.399-.078-.78-.22-1.128Zm0 0a15.998 15.998 0 0 0 3.388-1.62m-5.043-.025a15.994 15.994 0 0 1 1.622-3.395m3.42 3.42a15.995 15.995 0 0 0 4.764-4.648l3.876-5.814a1.151 1.151 0 0 0-1.597-1.597L14.146 6.32a15.996 15.996 0 0 0-4.649 4.763m3.42 3.42a6.776 6.776 0 0 0-3.42-3.42"/>
+                </svg>
+              </div>
+              <h4 class="font-heading text-sm font-semibold text-navy">Sample Design</h4>
+            </div>
+
+            <!-- Stage 2 -->
+            <div class="flex flex-col items-center text-center">
+              <div class="w-16 h-16 rounded-full bg-white border-2 border-slate/40 flex items-center justify-center mb-3 shadow-sm">
+                <svg class="h-7 w-7 text-slate" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M18 18.72a9.094 9.094 0 0 0 3.741-.479 3 3 0 0 0-4.682-2.72m.94 3.198.001.031c0 .225-.012.447-.037.666A11.944 11.944 0 0 1 12 21c-2.17 0-4.207-.576-5.963-1.584A6.062 6.062 0 0 1 6 18.719m12 0a5.971 5.971 0 0 0-.941-3.197m0 0A5.995 5.995 0 0 0 12 12.75a5.995 5.995 0 0 0-5.058 2.772m0 0a3 3 0 0 0-4.681 2.72 8.986 8.986 0 0 0 3.74.477m.94-3.197a5.971 5.971 0 0 0-.94 3.197M15 6.75a3 3 0 1 1-6 0 3 3 0 0 1 6 0Zm6 3a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Zm-13.5 0a2.25 2.25 0 1 1-4.5 0 2.25 2.25 0 0 1 4.5 0Z"/>
+                </svg>
+              </div>
+              <h4 class="font-heading text-sm font-semibold text-navy">Recruitment</h4>
+            </div>
+
+            <!-- Stage 3 -->
+            <div class="flex flex-col items-center text-center">
+              <div class="w-16 h-16 rounded-full bg-white border-2 border-slate/40 flex items-center justify-center mb-3 shadow-sm">
+                <svg class="h-7 w-7 text-slate" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M6 12 3.269 3.125A59.769 59.769 0 0 1 21.485 12 59.768 59.768 0 0 1 3.27 20.875L5.999 12Zm0 0h7.5"/>
+                </svg>
+              </div>
+              <h4 class="font-heading text-sm font-semibold text-navy">Fielding</h4>
+            </div>
+
+            <!-- Stage 4 -->
+            <div class="flex flex-col items-center text-center">
+              <div class="w-16 h-16 rounded-full bg-white border-2 border-slate/40 flex items-center justify-center mb-3 shadow-sm">
+                <svg class="h-7 w-7 text-slate" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M12 3v17.25m0 0c-1.472 0-2.882.265-4.185.75M12 20.25c1.472 0 2.882.265 4.185.75M18.75 4.97A48.416 48.416 0 0 0 12 4.5c-2.291 0-4.545.16-6.75.47m13.5 0c1.01.143 2.01.317 3 .52m-3-.52 2.62 10.726c.122.499-.106 1.028-.589 1.202a5.988 5.988 0 0 1-2.031.352 5.988 5.988 0 0 1-2.031-.352c-.483-.174-.711-.703-.59-1.202L18.75 4.971Zm-16.5.52c.99-.203 1.99-.377 3-.52m0 0 2.62 10.726c.122.499-.106 1.028-.589 1.202a5.989 5.989 0 0 1-2.031.352 5.989 5.989 0 0 1-2.031-.352c-.483-.174-.711-.703-.59-1.202L5.25 4.971Z"/>
+                </svg>
+              </div>
+              <h4 class="font-heading text-sm font-semibold text-navy">Weighting</h4>
+            </div>
+
+            <!-- Stage 5 -->
+            <div class="flex flex-col items-center text-center col-span-2 md:col-span-1">
+              <div class="w-16 h-16 rounded-full bg-white border-2 border-amber flex items-center justify-center mb-3 shadow-sm">
+                <svg class="h-7 w-7 text-amber" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5m.75-9 3-3 2.148 2.148A12.061 12.061 0 0 1 16.5 7.605"/>
+                </svg>
+              </div>
+              <h4 class="font-heading text-sm font-semibold text-navy">Analysis</h4>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 4: POPULATION SOURCES — "Where the Signal Starts" -->
+  <!-- ============================================================ -->
+  <section id="sources" class="bg-white">
+    <div class="container mx-auto px-5 lg:px-8 py-24 lg:py-32">
+      <div class="max-w-4xl mx-auto text-center mb-16">
+        <h2 class="font-heading text-sm font-medium uppercase tracking-[0.2em] text-amber mb-6">Population Sources</h2>
+        <h3 class="font-heading text-3xl md:text-4xl lg:text-5xl font-medium text-navy tracking-tight mb-6">
+          Where the Signal Starts
+        </h3>
+        <p class="text-lg text-slate max-w-2xl mx-auto leading-relaxed">
+          Inquoro reaches people through multiple pathways, each built for a different research need. Projects draw from one source or combine several — the Beamline handles the rest.
+        </p>
+      </div>
+
+      <!-- 2x2 Grid of Source Cards -->
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+
+        <!-- Signal Field -->
+        <div class="rounded-2xl border border-silver/40 bg-white p-8 hover:shadow-lg transition-shadow duration-300">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-lg bg-amber/10 flex items-center justify-center mr-4">
+              <svg class="h-6 w-6 text-amber" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9.348 14.652a3.75 3.75 0 0 1 0-5.304m5.304 0a3.75 3.75 0 0 1 0 5.304m-7.425 2.121a6.75 6.75 0 0 1 0-9.546m9.546 0a6.75 6.75 0 0 1 0 9.546M5.106 18.894c-3.808-3.807-3.808-9.98 0-13.788m13.788 0c3.808 3.807 3.808 9.98 0 13.788M12 12h.008v.008H12V12Zm.375 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Z"/>
+              </svg>
+            </div>
+            <h4 class="font-heading text-xl font-semibold text-navy">Signal Field</h4>
+          </div>
+          <p class="text-sm font-medium text-amber mb-2">The National Panel</p>
+          <p class="text-slate leading-relaxed">
+            A growing, opted-in panel of verified participants — recruited directly, stewarded over time. Signal Field members are real people in an ongoing relationship with research, not anonymous respondents chasing incentives.
+          </p>
+          <p class="text-slate leading-relaxed mt-3">
+            The panel reflects the country as it actually is: uneven, in motion, shaped by lived experience rather than abstract quotas.
+          </p>
+        </div>
+
+        <!-- Sector Field -->
+        <div class="rounded-2xl border border-silver/40 bg-white p-8 hover:shadow-lg transition-shadow duration-300">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-lg bg-slate/10 flex items-center justify-center mr-4">
+              <svg class="h-6 w-6 text-slate" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z"/>
+              </svg>
+            </div>
+            <h4 class="font-heading text-xl font-semibold text-navy">Sector Field</h4>
+          </div>
+          <p class="text-sm font-medium text-amber mb-2">Private &amp; Custom Panels</p>
+          <p class="text-slate leading-relaxed">
+            When research requires a specific community — a region, a demographic, a membership base — Inquoro builds a dedicated panel for it. Sector Fields let organizations track sentiment within the audiences that matter most, over time.
+          </p>
+        </div>
+
+        <!-- Field Relay -->
+        <div class="rounded-2xl border border-silver/40 bg-white p-8 hover:shadow-lg transition-shadow duration-300">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-lg bg-slate/10 flex items-center justify-center mr-4">
+              <svg class="h-6 w-6 text-slate" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M8.625 12a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H8.25m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0H12m4.125 0a.375.375 0 1 1-.75 0 .375.375 0 0 1 .75 0Zm0 0h-.375M21 12c0 4.556-4.03 8.25-9 8.25a9.764 9.764 0 0 1-2.555-.337A5.972 5.972 0 0 1 5.41 20.97a5.969 5.969 0 0 1-.474-.065 4.48 4.48 0 0 0 .978-2.025c.09-.457-.133-.901-.467-1.226C3.93 16.178 3 14.189 3 12c0-4.556 4.03-8.25 9-8.25s9 3.694 9 8.25Z"/>
+              </svg>
+            </div>
+            <h4 class="font-heading text-xl font-semibold text-navy">Field Relay</h4>
+          </div>
+          <p class="text-sm font-medium text-amber mb-2">Text-to-Web Recruitment</p>
+          <p class="text-slate leading-relaxed">
+            Direct outreach via SMS, driving respondents to web-based surveys. Field Relay reaches people where life is already happening — with the speed and scale to field nationally or target precisely, from battleground districts to specialized populations.
+          </p>
+        </div>
+
+        <!-- Field Sense -->
+        <div class="rounded-2xl border border-silver/40 bg-white p-8 hover:shadow-lg transition-shadow duration-300">
+          <div class="flex items-center mb-4">
+            <div class="w-12 h-12 rounded-lg bg-amber/10 flex items-center justify-center mr-4">
+              <svg class="h-6 w-6 text-amber" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 6.75c0 8.284 6.716 15 15 15h2.25a2.25 2.25 0 0 0 2.25-2.25v-1.372c0-.516-.351-.966-.852-1.091l-4.423-1.106c-.44-.11-.902.055-1.173.417l-.97 1.293c-.282.376-.769.542-1.21.38a12.035 12.035 0 0 1-7.143-7.143c-.162-.441.004-.928.38-1.21l1.293-.97c.363-.271.527-.734.417-1.173L6.963 3.102a1.125 1.125 0 0 0-1.091-.852H4.5A2.25 2.25 0 0 0 2.25 4.5v2.25Z"/>
+              </svg>
+            </div>
+            <h4 class="font-heading text-xl font-semibold text-navy">Field Sense</h4>
+          </div>
+          <p class="text-sm font-medium text-amber mb-2">Live Interviewer Surveys</p>
+          <p class="text-slate leading-relaxed">
+            Some research demands a human voice. Built in partnership with AMM Political Strategies, Field Sense deploys trained interviewers for phone-based collection — capturing nuance, building rapport, reaching the people digital channels miss.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 5: MEASUREMENT — "What the Beamline Reveals" -->
+  <!-- ============================================================ -->
+  <section id="measurement" class="bg-navy-gradient texture-dots">
+    <div class="container mx-auto px-5 lg:px-8 py-24 lg:py-32">
+      <div class="max-w-4xl mx-auto text-center mb-16">
+        <h2 class="font-heading text-sm font-medium uppercase tracking-[0.2em] text-amber mb-6">Services</h2>
+        <h3 class="font-heading text-3xl md:text-4xl lg:text-5xl font-medium text-white tracking-tight mb-4">
+          What the Beamline Reveals
+        </h3>
+      </div>
+
+      <!-- Primary Signal — Hero Treatment -->
+      <div class="max-w-4xl mx-auto mb-16">
+        <div class="rounded-2xl border border-silver/20 bg-white/5 backdrop-blur-sm p-8 lg:p-12">
+          <div class="flex items-center mb-6">
+            <div class="w-14 h-14 rounded-xl bg-amber/20 flex items-center justify-center mr-4">
+              <svg class="h-8 w-8 text-amber" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M3.75 3v11.25A2.25 2.25 0 0 0 6 16.5h2.25M3.75 3h-1.5m1.5 0h16.5m0 0h1.5m-1.5 0v11.25A2.25 2.25 0 0 1 18 16.5h-2.25m-7.5 0h7.5m-7.5 0-1 3m8.5-3 1 3m0 0 .5 1.5m-.5-1.5h-9.5m0 0-.5 1.5M9 11.25v1.5M12 9v3.75m3-6v6"/>
+              </svg>
+            </div>
+            <div>
+              <h4 class="font-heading text-2xl lg:text-3xl font-semibold text-white">Primary Signal</h4>
+              <p class="text-amber text-sm font-medium">Custom Research, Built Around Your Mission</p>
+            </div>
+          </div>
+          <p class="text-silver leading-relaxed text-lg">
+            Primary Signal is Inquoro's core engagement: a research project designed from the ground up around your objectives, your audience, and the decisions that will be built upon our findings. Merging our Signal Field national panel, your Sector Field private panel, Field Relay text-based recruitment, and Field Sense live-agent telephone interviews, the Beamline seamlessly samples, recruits, fields, and weights — focused entirely by what you need to know.
+          </p>
+          <p class="text-silver leading-relaxed text-lg mt-4">
+            The result isn't a generic survey report. It's intelligence built to your specifications: the right people, the right questions, data that connects directly to action. Single-wave or longitudinal. National or hyperlocal. Broad population or a segment no one else can reach.
+          </p>
+          <p class="text-white font-medium text-lg mt-4">
+            Primary Signal is how questions become decisions.
+          </p>
+        </div>
+      </div>
+
+      <!-- Signal Scan + Resonance Detector — Side by Side -->
+      <div class="max-w-5xl mx-auto grid md:grid-cols-2 gap-8">
+
+        <!-- Signal Scan -->
+        <div class="rounded-2xl border border-silver/20 bg-white/5 backdrop-blur-sm p-8">
+          <div class="w-12 h-12 rounded-lg bg-silver/10 flex items-center justify-center mb-4">
+            <svg class="h-6 w-6 text-silver" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 14.25v2.25m3-4.5v4.5m3-6.75v6.75m3-9v9M6 20.25h12A2.25 2.25 0 0 0 20.25 18V6A2.25 2.25 0 0 0 18 3.75H6A2.25 2.25 0 0 0 3.75 6v12A2.25 2.25 0 0 0 6 20.25Z"/>
+            </svg>
+          </div>
+          <h4 class="font-heading text-xl font-semibold text-white mb-2">Signal Scan</h4>
+          <p class="text-amber text-sm font-medium mb-3">Omnibus Research</p>
+          <p class="text-silver leading-relaxed">
+            A regular sweep across the field. Signal Scan tracks public opinion on the issues that matter, month over month — building a longitudinal record that reveals not just where opinion stands, but where it's heading.
+          </p>
+        </div>
+
+        <!-- Resonance Detector -->
+        <div class="rounded-2xl border border-silver/20 bg-white/5 backdrop-blur-sm p-8">
+          <div class="w-12 h-12 rounded-lg bg-silver/10 flex items-center justify-center mb-4">
+            <svg class="h-6 w-6 text-silver" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"/>
+            </svg>
+          </div>
+          <h4 class="font-heading text-xl font-semibold text-white mb-2">Resonance Detector</h4>
+          <p class="text-amber text-sm font-medium mb-3">Ad &amp; Campaign Effectiveness</p>
+          <p class="text-silver leading-relaxed">
+            Measures whether communications are actually changing minds. By identifying ad-exposed populations and comparing them against those outside the campaign's reach, Inquoro isolates real-world resonance.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 6: THE DIFFERENCE — "What Makes This Different" -->
+  <!-- ============================================================ -->
+  <section id="difference" class="bg-white">
+    <div class="container mx-auto px-5 lg:px-8 py-24 lg:py-32">
+      <div class="max-w-4xl mx-auto text-center mb-16">
+        <h2 class="font-heading text-sm font-medium uppercase tracking-[0.2em] text-amber mb-6">Why Inquoro</h2>
+        <h3 class="font-heading text-3xl md:text-4xl lg:text-5xl font-medium text-navy tracking-tight">
+          What Makes This Different
+        </h3>
+      </div>
+
+      <div class="max-w-6xl mx-auto grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+        <!-- Verified Participants (amber accent — key differentiator) -->
+        <div class="p-6 rounded-xl border border-silver/40 hover:shadow-lg transition-shadow duration-300">
+          <div class="w-12 h-12 rounded-lg bg-amber/10 flex items-center justify-center mb-4">
+            <svg class="h-6 w-6 text-amber" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M9 12.75 11.25 15 15 9.75m-3-7.036A11.959 11.959 0 0 1 3.598 6 11.99 11.99 0 0 0 3 9.749c0 5.592 3.824 10.29 9 11.623 5.176-1.332 9-6.03 9-11.622 0-1.31-.21-2.571-.598-3.751h-.152c-3.196 0-6.1-1.248-8.25-3.285Z"/>
+            </svg>
+          </div>
+          <h4 class="font-heading text-lg font-semibold text-navy mb-2">Verified Participants</h4>
+          <p class="text-slate text-sm leading-relaxed">
+            Every panelist is a real, verified person — matched against comprehensive data for 280 million American adults. No bots. No professional survey-takers. Just real people, and results you can stand behind.
+          </p>
+        </div>
+
+        <!-- Speed Without Compromise -->
+        <div class="p-6 rounded-xl border border-silver/40 hover:shadow-lg transition-shadow duration-300">
+          <div class="w-12 h-12 rounded-lg bg-slate/10 flex items-center justify-center mb-4">
+            <svg class="h-6 w-6 text-slate" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="m3.75 13.5 10.5-11.25L12 10.5h8.25L9.75 21.75 12 13.5H3.75Z"/>
+            </svg>
+          </div>
+          <h4 class="font-heading text-lg font-semibold text-navy mb-2">Speed Without Compromise</h4>
+          <p class="text-slate text-sm leading-relaxed">
+            From panel-ready studies to rapid-response fielding, Inquoro moves faster than traditional research firms — without sacrificing quality. The Beamline eliminates the handoff delays that slow conventional approaches.
+          </p>
+        </div>
+
+        <!-- Precision at Scale (amber accent — key differentiator) -->
+        <div class="p-6 rounded-xl border border-silver/40 hover:shadow-lg transition-shadow duration-300">
+          <div class="w-12 h-12 rounded-lg bg-amber/10 flex items-center justify-center mb-4">
+            <svg class="h-6 w-6 text-amber" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7.5 3.75H6A2.25 2.25 0 0 0 3.75 6v1.5M16.5 3.75H18A2.25 2.25 0 0 1 20.25 6v1.5m0 9V18A2.25 2.25 0 0 1 18 20.25h-1.5m-9 0H6A2.25 2.25 0 0 1 3.75 18v-1.5M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+            </svg>
+          </div>
+          <h4 class="font-heading text-lg font-semibold text-navy mb-2">Precision at Scale</h4>
+          <p class="text-slate text-sm leading-relaxed">
+            Access to 240 million US phone numbers, carrier-grade infrastructure, and a sampling engine built on one of the most comprehensive person-level databases in existence. Reach the exact audience you need.
+          </p>
+        </div>
+
+        <!-- Longitudinal Depth -->
+        <div class="p-6 rounded-xl border border-silver/40 hover:shadow-lg transition-shadow duration-300">
+          <div class="w-12 h-12 rounded-lg bg-slate/10 flex items-center justify-center mb-4">
+            <svg class="h-6 w-6 text-slate" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6.429 9.75 2.25 12l4.179 2.25m0-4.5 5.571 3 5.571-3m-11.142 0L2.25 7.5 12 2.25l9.75 5.25-4.179 2.25m0 0L21.75 12l-4.179 2.25m0 0 4.179 2.25L12 21.75 2.25 16.5l4.179-2.25m11.142 0-5.571 3-5.571-3"/>
+            </svg>
+          </div>
+          <h4 class="font-heading text-lg font-semibold text-navy mb-2">Longitudinal Depth</h4>
+          <p class="text-slate text-sm leading-relaxed">
+            Inquoro doesn't just capture a snapshot. Ongoing panel relationships and repeated measurement build a record that deepens over time — so trends become visible and shifts can be anticipated before they surface elsewhere.
+          </p>
+        </div>
+
+        <!-- Data That Connects -->
+        <div class="p-6 rounded-xl border border-silver/40 hover:shadow-lg transition-shadow duration-300">
+          <div class="w-12 h-12 rounded-lg bg-slate/10 flex items-center justify-center mb-4">
+            <svg class="h-6 w-6 text-slate" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M7.217 10.907a2.25 2.25 0 1 0 0 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186 9.566-5.314m-9.566 7.5 9.566 5.314m0 0a2.25 2.25 0 1 0 3.935 2.186 2.25 2.25 0 0 0-3.935-2.186Zm0-12.814a2.25 2.25 0 1 0 3.933-2.185 2.25 2.25 0 0 0-3.933 2.185Z"/>
+            </svg>
+          </div>
+          <h4 class="font-heading text-lg font-semibold text-navy mb-2">Data That Connects</h4>
+          <p class="text-slate text-sm leading-relaxed">
+            Verified panelists achieve industry-leading match rates to proprietary and third-party datasets — turning survey responses into rich, multi-dimensional profiles that support advanced modeling and analysis.
+          </p>
+        </div>
+
+        <!-- Built for What's Next -->
+        <div class="p-6 rounded-xl border border-silver/40 hover:shadow-lg transition-shadow duration-300">
+          <div class="w-12 h-12 rounded-lg bg-slate/10 flex items-center justify-center mb-4">
+            <svg class="h-6 w-6 text-slate" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15.59 14.37a6 6 0 0 1-5.84 7.38v-4.8m5.84-2.58a14.98 14.98 0 0 0 6.16-12.12A14.98 14.98 0 0 0 9.631 8.41m5.96 5.96a14.926 14.926 0 0 1-5.841 2.58m-.119-8.54a6 6 0 0 0-7.381 5.84h4.8m2.581-5.84a14.927 14.927 0 0 0-2.58 5.84m2.699 2.7c-.103.021-.207.041-.311.06a15.09 15.09 0 0 1-2.448-2.448 14.9 14.9 0 0 1 .06-.312m-2.24 2.39a4.493 4.493 0 0 0-1.757 4.306 4.493 4.493 0 0 0 4.306-1.758M16.5 9a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0Z"/>
+            </svg>
+          </div>
+          <h4 class="font-heading text-lg font-semibold text-navy mb-2">Built for What's Next</h4>
+          <p class="text-slate text-sm leading-relaxed">
+            Inquoro's direct-recruitment model isn't just more accurate today — it's built for what's coming. Evolving privacy regulations. AI-generated survey fraud. The research landscape is changing. This infrastructure is ready.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 7: WHO WE WORK WITH -->
+  <!-- ============================================================ -->
+  <section class="bg-gray-50/80">
+    <div class="container mx-auto px-5 lg:px-8 py-24 lg:py-32">
+      <div class="max-w-4xl mx-auto text-center mb-12">
+        <h2 class="font-heading text-sm font-medium uppercase tracking-[0.2em] text-amber mb-6">Our Clients</h2>
+        <h3 class="font-heading text-3xl md:text-4xl font-medium text-navy tracking-tight mb-6">
+          Who We Work With
+        </h3>
+        <p class="text-lg text-slate max-w-2xl mx-auto leading-relaxed">
+          Inquoro works with organizations whose decisions depend on genuine understanding — where misreading the public has real consequences, measured in policy, strategy, and trust.
+        </p>
+      </div>
+
+      <div class="max-w-4xl mx-auto grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-6">
+        <div class="flex flex-col items-center text-center p-4">
+          <div class="w-14 h-14 rounded-full bg-white border border-silver/40 flex items-center justify-center mb-3 shadow-sm">
+            <svg class="h-6 w-6 text-slate" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z"/>
+            </svg>
+          </div>
+          <p class="font-heading text-sm font-medium text-navy">Campaigns &amp; Strategists</p>
+        </div>
+
+        <div class="flex flex-col items-center text-center p-4">
+          <div class="w-14 h-14 rounded-full bg-white border border-silver/40 flex items-center justify-center mb-3 shadow-sm">
+            <svg class="h-6 w-6 text-slate" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 7.5h1.5m-1.5 3h1.5m-7.5 3h7.5m-7.5 3h7.5m3-9h3.375c.621 0 1.125.504 1.125 1.125V18a2.25 2.25 0 0 1-2.25 2.25M16.5 7.5V18a2.25 2.25 0 0 0 2.25 2.25M16.5 7.5V4.875c0-.621-.504-1.125-1.125-1.125H4.125C3.504 3.75 3 4.254 3 4.875V18a2.25 2.25 0 0 0 2.25 2.25h13.5M6 7.5h3v3H6v-3Z"/>
+            </svg>
+          </div>
+          <p class="font-heading text-sm font-medium text-navy">Advocacy &amp; Policy</p>
+        </div>
+
+        <div class="flex flex-col items-center text-center p-4">
+          <div class="w-14 h-14 rounded-full bg-white border border-silver/40 flex items-center justify-center mb-3 shadow-sm">
+            <svg class="h-6 w-6 text-slate" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M15 19.128a9.38 9.38 0 0 0 2.625.372 9.337 9.337 0 0 0 4.121-.952 4.125 4.125 0 0 0-7.533-2.493M15 19.128v-.003c0-1.113-.285-2.16-.786-3.07M15 19.128v.106A12.318 12.318 0 0 1 8.624 21c-2.331 0-4.512-.645-6.374-1.766l-.001-.109a6.375 6.375 0 0 1 11.964-3.07M12 6.375a3.375 3.375 0 1 1-6.75 0 3.375 3.375 0 0 1 6.75 0Zm8.25 2.25a2.625 2.625 0 1 1-5.25 0 2.625 2.625 0 0 1 5.25 0Z"/>
+            </svg>
+          </div>
+          <p class="font-heading text-sm font-medium text-navy">Membership Organizations</p>
+        </div>
+
+        <div class="flex flex-col items-center text-center p-4">
+          <div class="w-14 h-14 rounded-full bg-white border border-silver/40 flex items-center justify-center mb-3 shadow-sm">
+            <svg class="h-6 w-6 text-slate" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6a7.5 7.5 0 1 0 7.5 7.5h-7.5V6Z"/>
+              <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 10.5H21A7.5 7.5 0 0 0 13.5 3v7.5Z"/>
+            </svg>
+          </div>
+          <p class="font-heading text-sm font-medium text-navy">Pollsters &amp; Researchers</p>
+        </div>
+
+        <div class="flex flex-col items-center text-center p-4 col-span-2 md:col-span-1">
+          <div class="w-14 h-14 rounded-full bg-white border border-silver/40 flex items-center justify-center mb-3 shadow-sm">
+            <svg class="h-6 w-6 text-slate" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Zm0 3h.008v.008h-.008v-.008Z"/>
+            </svg>
+          </div>
+          <p class="font-heading text-sm font-medium text-navy">Commercial Brands</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 8: INFERENCE ENGINE -->
+  <!-- ============================================================ -->
+  <section class="bg-navy-gradient texture-dots">
+    <div class="container mx-auto px-5 lg:px-8 py-24 lg:py-32">
+      <div class="max-w-3xl mx-auto text-center">
+        <h2 class="font-heading text-sm font-medium uppercase tracking-[0.2em] text-amber mb-6">Strategic Consulting</h2>
+        <h3 class="font-heading text-3xl md:text-4xl lg:text-5xl font-medium text-white tracking-tight mb-4">
+          Inference Engine
+        </h3>
+        <p class="font-heading text-xl text-silver mb-12">From Insight to Strategy</p>
+
+        <div class="space-y-6 text-lg text-silver leading-relaxed">
+          <p>
+            Research that stops at a topline report is research half-finished. The Inference Engine — Inquoro's strategic consulting practice — takes what the data reveals and translates it into guidance: communications strategy, audience segmentation, modeling, projections.
+          </p>
+          <p class="text-white text-2xl font-heading font-light tracking-tight">
+            The loop closes here.
+          </p>
+          <p>
+            Insights from one engagement shape the design of the next, building a cycle where every project makes the system smarter and every client's understanding deeper.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SECTION 9: CONTACT -->
+  <!-- ============================================================ -->
+  <section id="contact" class="bg-white">
+    <div class="container mx-auto px-5 lg:px-8 py-24 lg:py-32">
+      <div class="max-w-2xl mx-auto">
+        <div class="text-center mb-10">
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-medium text-navy tracking-tight mb-4">
+            Begin With the Questions That Matter
+          </h2>
+          <p class="text-lg text-slate">Understanding starts here. Tell us what you need to know.</p>
+        </div>
+
+        <form class="space-y-6" onsubmit="event.preventDefault(); alert('Form submission would go here — this is a static preview.');">
+          <div class="grid gap-6 md:grid-cols-2">
+            <div>
+              <label class="block text-sm font-medium text-slate mb-1.5">Name</label>
+              <input type="text" placeholder="Your name" class="w-full rounded-lg border border-silver/60 px-4 py-3 text-sm text-navy placeholder:text-silver focus:outline-none focus:ring-2 focus:ring-amber/40 focus:border-amber transition-colors">
+            </div>
+            <div>
+              <label class="block text-sm font-medium text-slate mb-1.5">Email</label>
+              <input type="email" placeholder="your@email.com" class="w-full rounded-lg border border-silver/60 px-4 py-3 text-sm text-navy placeholder:text-silver focus:outline-none focus:ring-2 focus:ring-amber/40 focus:border-amber transition-colors">
+            </div>
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate mb-1.5">Organization</label>
+            <input type="text" placeholder="Your organization" class="w-full rounded-lg border border-silver/60 px-4 py-3 text-sm text-navy placeholder:text-silver focus:outline-none focus:ring-2 focus:ring-amber/40 focus:border-amber transition-colors">
+          </div>
+          <div>
+            <label class="block text-sm font-medium text-slate mb-1.5">What do you need to know?</label>
+            <textarea rows="5" placeholder="Tell us about your research needs..." class="w-full rounded-lg border border-silver/60 px-4 py-3 text-sm text-navy placeholder:text-silver focus:outline-none focus:ring-2 focus:ring-amber/40 focus:border-amber transition-colors resize-y"></textarea>
+          </div>
+          <div class="flex flex-col items-center space-y-4">
+            <button type="submit" class="w-full md:w-auto inline-flex items-center justify-center px-8 py-4 rounded-full bg-amber text-white text-lg font-medium hover:bg-amber-dark transition-colors shadow-lg shadow-amber/20">
+              Find the Signal
+              <svg class="ml-2 h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5"/>
+              </svg>
+            </button>
+            <p class="text-sm text-silver">
+              Or email us directly at <a href="mailto:info@inquoro.io" class="text-amber hover:underline">info@inquoro.io</a>
+            </p>
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- FOOTER -->
+  <!-- ============================================================ -->
+  <footer class="bg-navy text-silver/80">
+    <div class="container mx-auto px-5 lg:px-8 py-12 lg:py-16">
+      <div class="flex flex-col lg:flex-row justify-between items-start space-y-8 lg:space-y-0">
+        <!-- Brand -->
+        <div class="lg:w-4/12">
+          <img src="assets/images/web/logo-text-alpha.png" alt="Inquoro" class="h-10 mb-4 brightness-200">
+          <p class="text-sm text-silver/60">Generating Discovery</p>
+        </div>
+
+        <!-- Links -->
+        <div class="flex space-x-16 lg:space-x-24">
+          <div>
+            <h5 class="font-heading font-semibold text-white text-sm mb-4">Platform</h5>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#beamline" class="hover:text-white transition-colors">The Beamline</a></li>
+              <li><a href="#sources" class="hover:text-white transition-colors">Population Sources</a></li>
+              <li><a href="#measurement" class="hover:text-white transition-colors">Services</a></li>
+            </ul>
+          </div>
+          <div>
+            <h5 class="font-heading font-semibold text-white text-sm mb-4">Company</h5>
+            <ul class="space-y-2 text-sm">
+              <li><a href="#mission" class="hover:text-white transition-colors">About</a></li>
+              <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="border-t border-silver/10 mt-12 pt-8">
+        <p class="text-xs text-silver/40">&copy; 2026 Inquoro. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Mobile menu toggle -->
+  <script>
+    const btn = document.getElementById('mobile-menu-btn');
+    const menu = document.getElementById('mobile-menu');
+    btn.addEventListener('click', () => menu.classList.toggle('hidden'));
+    // Close menu on link click
+    menu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => menu.classList.add('hidden')));
+  </script>
+
+</body>
+</html>
